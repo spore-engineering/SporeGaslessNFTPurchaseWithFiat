@@ -9,17 +9,30 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-lambda": "^3.118.1",
+    "@aws-sdk/eventstream-marshaller": "^3.118.1",
     "@chakra-ui/pro-theme": "^0.0.53",
     "@chakra-ui/react": "^2.2.1",
+    "@coinbase/wallet-sdk": "^3.3.0",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@fontsource/inter": "^4.5.11",
     "@fontsource/roboto": "^4.5.7",
+    "@myetherwallet/mewconnect-web-client": "^2.2.0-beta.16",
+    "@portis/web3": "^4.0.7",
+    "@walletconnect/web3-provider": "^1.7.8",
+    "authereum": "^0.1.14",
+    "crypto-js": "^4.1.1",
+    "defender-relay-client": "^1.25.0",
+    "ethers": "^5.6.9",
+    "fortmatic": "^2.4.0",
     "framer-motion": "^6",
+    "js-cookie": "^3.0.1",
     "next": "12.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "^4.4.0"
+    "react-icons": "^4.4.0",
+    "web3modal": "^1.9.8"
   },
   "devDependencies": {
     "eslint": "8.18.0",

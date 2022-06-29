@@ -12,10 +12,21 @@ import {
 import * as React from 'react'
 import { CartItem } from './CartItem'
 import { CartOrderSummary } from './CartOrderSummary'
-import { cartData } from './_data'
 
-export const AppCart = () => (
-  <Container>
+import { NFT } from "../helpers/contracts"
+import { OPENSEA_SINGLE_PAGE, NFT_IMAGE, NFT_DESC, NFT_TITLE, OPENSEA_COLLECTION_PAGE} from "../helpers/constants"
+
+
+export const AppCart = (props) => {
+
+  const {
+    totalSupply,
+    balance,
+    address
+  } = props
+
+  return (
+    <Container>
       <Box px={{ base: '4', md: '6'}} py={{ base: '5', md: '6'}} w='100%' p={4} bg="bg-surface" borderRadius="lg" boxShadow={useColorModeValue('sm', 'sm-dark')}>
 
   <Box
@@ -56,24 +67,30 @@ export const AppCart = () => (
         flex="2"
       >
         <Heading fontSize="2xl" fontWeight="extrabold">
-          Mis NFTs (3 items)
+          Mis NFTs ({balance} item)
         </Heading>
 
-        <Stack spacing="6">
-          {cartData.map((item) => (
-            <CartItem key={item.id} {...item} />
-          ))}
-        </Stack>
+
+        {address && balance && (
+          <Stack spacing="6">
+            <CartItem nftImage={NFT_IMAGE} nftContract={NFT.address} nftDesc={NFT_DESC} nftTitle={NFT_TITLE} nftBalance={balance} singleMarket={OPENSEA_SINGLE_PAGE} />
+          </Stack>
+        )}
+        
       </Stack>
 
       <Flex direction="column" align="center" flex="1">
-        <CartOrderSummary />
+        <CartOrderSummary totalSupply={totalSupply} />
         <HStack mt="6" fontWeight="semibold">
-          <Link color={mode('blue.500', 'blue.200')}>Ver colección en OpenSea</Link>
+      
+          <Link target="_blank" href={OPENSEA_COLLECTION_PAGE} rel="noopener noreferrer" color={mode('blue.500', 'blue.200')}>Ver colección en OpenSea</Link>
         </HStack>
       </Flex>
     </Stack>
   </Box>
   </Box>
   </Container>
-)
+  )
+}
+
+

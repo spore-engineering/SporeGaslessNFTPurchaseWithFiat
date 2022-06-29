@@ -3,34 +3,20 @@ import * as React from 'react'
 import { PriceTag } from './PriceTag'
 import { CartProductMeta } from './CartProductMeta'
 
-const QuantitySelect = (props) => {
-  return (
-    <Select
-      maxW="64px"
-      aria-label="Select quantity"
-      focusBorderColor={useColorModeValue('blue.500', 'blue.200')}
-      {...props}
-    >
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-    </Select>
-  )
-}
+import { FaExternalLinkAlt } from 'react-icons/fa'
 
 export const CartItem = (props) => {
   const {
-    isGiftWrapping,
-    name,
-    description,
-    quantity,
-    imageUrl,
-    currency,
-    price,
-    onChangeQuantity,
-    onClickDelete,
+    nftImage,
+    nftContract,
+    nftDesc,
+    nftTitle,
+    nftBalance,
+    singleMarket
   } = props
+
+  const marketSingleUrl = singleMarket+"/"+nftContract+"/1"
+
   return (
     <Flex
       direction={{
@@ -41,10 +27,9 @@ export const CartItem = (props) => {
       align="center"
     >
       <CartProductMeta
-        name={name}
-        description={description}
-        image={imageUrl}
-        isGiftWrapping={isGiftWrapping}
+        name={nftTitle}
+        description={nftDesc}
+        image={nftImage}
       />
 
       {/* Desktop */}
@@ -56,9 +41,11 @@ export const CartItem = (props) => {
           md: 'flex',
         }}
       >
-        <p>Cantidad: 4</p>
-        <p>Red: Polygon</p>
-        <CloseButton aria-label={`Delete ${name} from cart`} onClick={onClickDelete} />
+        <p>Cantidad: {nftBalance}</p>
+        <p>Red: Rinkeby</p>
+        <a target="_blank" href={marketSingleUrl} rel="noopener noreferrer"><FaExternalLinkAlt /></a>
+
+        
       </Flex>
 
       {/* Mobile */}
@@ -72,9 +59,9 @@ export const CartItem = (props) => {
           md: 'none',
         }}
       >
-        <p fontSize="sm">Cantidad: 4</p>
-        <p fontSize="sm">Red: Polygon</p>
-        <PriceTag price={price} currency={currency} />
+        <p fontSize="sm">Cantidad: {nftBalance}</p>
+        <p fontSize="sm">Red: Rinkeby</p>
+        <a target="_blank" href={marketSingleUrl} rel="noopener noreferrer"><FaExternalLinkAlt /></a>
       </Flex>
     </Flex>
   )
